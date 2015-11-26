@@ -17,9 +17,11 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Enable Persistent Connections
-DATABASES = { 'default' : dj_database_url.config()}
-DATABASES['default'] =  dj_database_url.config()
-DATABASES['default']['CONN_MAX_AGE'] = 500
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
+    )
+}
 
 # SECURITY WARNING: don't run with debug turned on in production!
 INPROD = True
