@@ -23,7 +23,7 @@ DATABASES = {
     }
 
 # SECURITY WARNING: don't run with debug turned on in production!
-INPROD = True
+INPROD = False
 DEBUG = not INPROD
 #SECURE_CONTENT_TYPE_NOSNIFF = INPROD
 #SECURE_BROWSER_XSS_FILTER = INPROD
