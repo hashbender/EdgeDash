@@ -11,6 +11,7 @@ class WorkToClientWidget(NumberWidget):
     todaysDate = time.strftime("%m/%d/%Y")
 
     def get_title(self):
+        print "WorkToClientWidget title"
         return self.title
 
     def get_more_info(self):
@@ -24,6 +25,7 @@ class WorkToClientWidget(NumberWidget):
         return self.detail
 
     def get_value(self):
+        print "Starting to get values"
         #self.value = random.random()
         more_info = "Last Updated: " + time.strftime('%c')
         site = 'https://www.propertypreswizard.com/control.php/login/login/?event=verify'
@@ -33,9 +35,10 @@ class WorkToClientWidget(NumberWidget):
         values = {
             'username' : os.environ['PWW_USERNAME'],
             'password' : os.environ['PWW_PASSWORD']}
-
+        print "Posting"
         session = requests.Session()
         resp = session.post(site,data=values)
+        print "Done authorizing"
 
         resp = session.get(reportSite)
         print "Running report for today's date: " + self.todaysDate
