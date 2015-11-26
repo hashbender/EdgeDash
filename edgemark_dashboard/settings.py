@@ -18,22 +18,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Enable Persistent Connections
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
-    )
-}
+    'default':
+        dj_database_url.config(default='postgres://foo:bar@localhost:5432/db')
+    }
 
 # SECURITY WARNING: don't run with debug turned on in production!
 INPROD = True
 DEBUG = not INPROD
-SECURE_CONTENT_TYPE_NOSNIFF = INPROD
-SECURE_BROWSER_XSS_FILTER = INPROD
-SECURE_SSL_REDIRECT = INPROD
-SESSION_COOKIE_SECURE = INPROD
+#SECURE_CONTENT_TYPE_NOSNIFF = INPROD
+#SECURE_BROWSER_XSS_FILTER = INPROD
+#SECURE_SSL_REDIRECT = INPROD
+#SESSION_COOKIE_SECURE = INPROD
 CSRF_COOKIE_SECURE = INPROD
 CSRF_COOKIE_HTTPONLY = INPROD
 X_FRAME_OPTIONS = "DENY"
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = [
     '.edgedash.com',

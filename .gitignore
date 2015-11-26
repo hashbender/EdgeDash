@@ -1,5 +1,6 @@
 *.secret
 venv
+postgres
 staticfiles
 *.sqlite3
 # Byte-compiled / optimized / DLL files
