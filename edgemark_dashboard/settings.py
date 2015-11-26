@@ -36,7 +36,8 @@ X_FRAME_OPTIONS = "DENY"
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = [
-    '.edgedash.com'
+    '.edgedash.com',
+    '.edgedash.com.'
 ]
 
 SECRET_KEY = os.environ['SECRET_KEY']
