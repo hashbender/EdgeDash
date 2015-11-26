@@ -16,10 +16,9 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Enable Persistent Connections
 DATABASES['default'] =  dj_database_url.config()
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # SECURITY WARNING: don't run with debug turned on in production!
 INPROD = True
@@ -120,6 +119,7 @@ LOGOUT_URL = '/logout'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
