@@ -19,11 +19,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Enable Persistent Connections
 DATABASES = {
     'default':
-        dj_database_url.config(default='postgres://foo:bar@localhost:5432/db')
+        dj_database_url.config()
     }
 
 # SECURITY WARNING: don't run with debug turned on in production!
-INPROD = False
+INPROD = True
 DEBUG = not INPROD
 #SECURE_CONTENT_TYPE_NOSNIFF = INPROD
 #SECURE_BROWSER_XSS_FILTER = INPROD
@@ -71,7 +71,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-                BASE_DIR + '/edgemark_dashboard/templates',
+                os.path.join(BASE_DIR, 'edgemark_dashboard/templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {

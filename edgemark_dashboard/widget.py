@@ -2,8 +2,7 @@ from dashing.widgets import NumberWidget
 import requests
 import time
 import lxml.html as lh
-import random
-from django.contrib.auth.decorators import login_required
+import os
 
 class WorkToClientWidget(NumberWidget):
     title = 'Work Sent To Client'
@@ -26,12 +25,15 @@ class WorkToClientWidget(NumberWidget):
 
     def get_value(self):
         print "Starting to get values"
-        #self.value = random.random()
         more_info = "Last Updated: " + time.strftime('%c')
+        print "Done getting date"
         site = 'https://www.propertypreswizard.com/control.php/login/login/?event=verify'
         reportSite = 'https://www.propertypreswizard.com/control.php/report/invoice_client_test/'
         runReportUrl = 'https://www.propertypreswizard.com/control.php/report/invoice_client_test/?event=processFields'
-
+        print "Getting default values"
+        print "Just about to..."
+        print os.environ['PWW_USERNAME']
+        print os.environ['PWW_PASSWORD']
         values = {
             'username' : os.environ['PWW_USERNAME'],
             'password' : os.environ['PWW_PASSWORD']}
@@ -61,6 +63,7 @@ class WorkToClientWidget(NumberWidget):
         return self.value
 
     def get_context(self):
+        print "Getting context from Widget"
         return {
             'title': self.get_title(),
             'moreInfo': self.get_more_info(),

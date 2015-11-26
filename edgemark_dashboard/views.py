@@ -2,6 +2,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
 
 @login_required
 def main_page(request):

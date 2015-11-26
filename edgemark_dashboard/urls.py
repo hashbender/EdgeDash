@@ -28,7 +28,6 @@ urlpatterns = patterns('',
     url(r'^$', main_page),
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout'),
-    #    url(r'^widgets/total_work_completed/?', login_required(WorkToClientWidget.as_view()), "widget_total_work_completed"),
 
     url(r'^dashboard/', include(router.urls)),
 
