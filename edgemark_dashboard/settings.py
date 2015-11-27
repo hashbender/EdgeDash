@@ -45,6 +45,7 @@ ALLOWED_HOSTS = [
 ]
 
 SECRET_KEY = os.environ['SECRET_KEY']
+ADMINS = ((os.environ['ADMIN_NAME'], os.environ['ADMIN_EMAIL']))
 
 # Application definition
 
@@ -55,11 +56,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangosecure',
     'edgemark_dashboard',
     'dashing',
+    'sslserver',
+
 )
 
 MIDDLEWARE_CLASSES = (
+    'djangosecure.middleware.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,14 +136,14 @@ LOGGING = {
     },
 }
 
-ADMINS = ((os.environ['ADMIN_NAME'], os.environ['ADMIN_EMAIL']))
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
+STATIC_URL = os.path.join(BASE_DIR,'/staticfiles/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'edgemark_dashboard/static'),
 )
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
