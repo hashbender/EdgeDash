@@ -35,8 +35,13 @@ X_FRAME_OPTIONS = "DENY"
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = [
+    'www.edgedash.com',
+    'www.edgedash.herokuapp.com'
     '.edgedash.com',
-    '.edgedash.com.'
+    '.edgedash.com',
+    '.edgedash.com.',
+    'localhost',
+    '127.0.0.1'
 ]
 
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -80,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.core.context_processors.request",
             ],
         },
     },
@@ -104,11 +110,28 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 LOGIN_URL = '/login'
 
 LOGOUT_URL = '/logout'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        # Include the default Django email handler for errors
+        # This is what you'd get without configuring logging at all.
+        'mail_admins': {
+            'class': 'django.utils.log.AdminEmailHandler',
+            'level': 'ERROR',
+             # But the emails are plain text by default - HTML is nicer
+            'include_html': True,
+        },
+    },
+}
+
+ADMINS = ((os.environ['ADMIN_NAME'], os.environ['ADMIN_EMAIL']))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
