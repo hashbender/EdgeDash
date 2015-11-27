@@ -59,8 +59,6 @@ INSTALLED_APPS = (
     'djangosecure',
     'edgemark_dashboard',
     'dashing',
-    'sslserver',
-
 )
 
 MIDDLEWARE_CLASSES = (
